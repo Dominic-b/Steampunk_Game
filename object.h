@@ -17,7 +17,7 @@ class Object {
 
 			Point();
 		};
-		void drawPoint(Point a, SDL_Renderer* renderer);
+		void drawPoint(Point a, Camera b, SDL_Renderer* renderer);
 
 		struct Line {
 			Point *a, *b;

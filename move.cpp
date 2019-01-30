@@ -25,13 +25,20 @@ void Move::movePlayer(Object::Player &a, SDL_Event& e) {
 	a.hitbox.x = a.x;
 	a.hitbox.y = a.y;
 
-	if (a.hitbox.y + (a.hitbox.height / 2) >= SCREEN_HEIGHT) {
-		a.y = SCREEN_HEIGHT - (a.hitbox.height / 2) - 1;
+	if (a.hitbox.y + (a.hitbox.height / 2) >= LEVEL_HEIGHT) {
+		a.y = LEVEL_HEIGHT - (a.hitbox.height / 2) - 1;
 		a.velY = 0;
 		a.velX *= .9;
 		a.airborne = false;
 	} else {
 		a.airborne = true;
+	}
+	if (a.hitbox.x - a.hitbox.width / 2 <= 0) {
+		a.x = a.hitbox.width / 2;
+		a.velX = 0;
+	} else if (a.hitbox.x + a.hitbox.width / 2 >= LEVEL_WIDTH) {
+		a.x = LEVEL_WIDTH - a.hitbox.width / 2;
+		a.velX = 0;
 	}
 
 	a.forceX = 0;

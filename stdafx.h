@@ -14,7 +14,7 @@ static Event event;
 static Move move;
 
 constexpr auto LEVEL_WIDTH = 4200;
-constexpr auto LEVEL_HEIGHT = 4200;
+constexpr auto LEVEL_HEIGHT = (1080 / 3);// *2;
 
 constexpr auto SCREEN_WIDTH = (1920 / 3);// *2; // accounting for scaling on personal device
 constexpr auto SCREEN_HEIGHT = (1080 / 3);// *2;

@@ -12,7 +12,7 @@ int main(int argc, char args[]) {
 	Object::Camera camera;
 
 	Object::Point hook;
-	hook.x = 300;
+	hook.x = 1500;
 	hook.y = 100;
 
 	Object::Player player;
@@ -27,8 +27,12 @@ int main(int argc, char args[]) {
 		event.update(e);
 		move.movePlayer(player, e);
 		if (event.mouse1held) move.moveHook(player, hook);
+
+		move.moveCamera(camera, player);
 		object.drawPlayer(player, camera, renderer);
-		object.drawPoint(hook, renderer);
+		object.drawPoint(hook, camera, renderer);
+
+		SDL_RenderDrawLine(renderer, 0 - camera.x, 100 - camera.y, 3000 - camera.x, 400 - camera.y);
 
 		SDL_RenderPresent(renderer);
 	}

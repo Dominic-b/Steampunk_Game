@@ -11,8 +11,8 @@ Object::Point::Point() {
 	y = SCREEN_HEIGHT / 2;
 }
 
-void Object::drawPoint(Point a, SDL_Renderer* renderer) {
-	SDL_RenderDrawPoint(renderer, a.x, a.y);
+void Object::drawPoint(Point a, Camera b, SDL_Renderer* renderer) {
+	SDL_RenderDrawPoint(renderer, a.x - b.x, a.y - b.y);
 }
 
 Object::Line::Line() {
