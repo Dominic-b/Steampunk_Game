@@ -12,7 +12,19 @@ Object::Point::Point() {
 }
 
 void Object::drawPoint(Point a, Camera b, SDL_Renderer* renderer) {
-	SDL_RenderDrawPoint(renderer, a.x - b.x, a.y - b.y);
+	SDL_Rect source;
+	source.x = 0;
+	source.y = 0;
+	source.w = 16;
+	source.h = 16;
+
+	SDL_Rect destination;
+	destination.x = a.x - source.w / 2 - b.x;
+	destination.y = a.y - source.h / 2 - b.y;
+	destination.w = source.w;
+	destination.h = source.h;
+
+	SDL_RenderCopy(renderer, draw.loadTexture("Images/Square.png", renderer), &source, &destination);
 }
 
 Object::Line::Line() {
@@ -35,15 +47,24 @@ Object::Player::Player() {
 	forceX = 0;
 	forceY = Gravity;
 
-	maxSpeed = 15;
+	maxSpeed = 20;
 	acceleration = 1;
 
 	airborne = true;
 }
 
 void Object::drawPlayer(Player a, Camera b, SDL_Renderer* renderer) {
-	SDL_RenderDrawLine(renderer, a.hitbox.x - a.hitbox.width / 2 - b.x, a.hitbox.y - a.hitbox.height / 2 - b.y, a.hitbox.x + a.hitbox.width / 2 - b.x, a.hitbox.y - a.hitbox.height / 2 - b.y);
-	SDL_RenderDrawLine(renderer, a.hitbox.x + a.hitbox.width / 2 - b.x, a.hitbox.y - a.hitbox.height / 2 - b.y, a.hitbox.x + a.hitbox.width / 2 - b.x, a.hitbox.y + a.hitbox.height / 2 - b.y);
-	SDL_RenderDrawLine(renderer, a.hitbox.x + a.hitbox.width / 2 - b.x, a.hitbox.y + a.hitbox.height / 2 - b.y, a.hitbox.x - a.hitbox.width / 2 - b.x, a.hitbox.y + a.hitbox.height / 2 - b.y);
-	SDL_RenderDrawLine(renderer, a.hitbox.x - a.hitbox.width / 2 - b.x, a.hitbox.y + a.hitbox.height / 2 - b.y, a.hitbox.x - a.hitbox.width / 2 - b.x, a.hitbox.y - a.hitbox.height / 2 - b.y);
+	SDL_Rect source;
+	source.x = 0;
+	source.y = 0;
+	source.w = a.hitbox.width;
+	source.h = a.hitbox.height;
+
+	SDL_Rect destination;
+	destination.x = a.x - a.hitbox.width / 2 - b.x;
+	destination.y = a.y - a.hitbox.height / 2 - b.y;
+	destination.w = a.hitbox.width;
+	destination.h = a.hitbox.height;
+
+	SDL_RenderCopy(renderer, draw.loadTexture("Images/Square.png", renderer), &source, &destination);
 }

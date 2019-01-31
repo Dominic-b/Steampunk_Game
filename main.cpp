@@ -29,17 +29,15 @@ int main(int argc, char args[]) {
 		if (event.mouse1held) move.moveHook(player, hook);
 
 		move.moveCamera(camera, player);
-		object.drawPlayer(player, camera, renderer);
 		object.drawPoint(hook, camera, renderer);
+		object.drawPlayer(player, camera, renderer);
+
 
 		SDL_RenderDrawLine(renderer, 0 - camera.x, 100 - camera.y, 3000 - camera.x, 400 - camera.y);
 
 		SDL_RenderPresent(renderer);
 	}
-	if (texture != nullptr) {
-		SDL_DestroyTexture(texture);
-		texture = nullptr;
-	}
+	draw.free();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	window = nullptr;

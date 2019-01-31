@@ -25,8 +25,8 @@ void Move::movePlayer(Object::Player &a, SDL_Event& e) {
 	a.hitbox.x = a.x;
 	a.hitbox.y = a.y;
 
-	if (a.hitbox.y + (a.hitbox.height / 2) >= LEVEL_HEIGHT) {
-		a.y = LEVEL_HEIGHT - (a.hitbox.height / 2) - 1;
+	if (a.hitbox.y + (a.hitbox.height / 2) > LEVEL_HEIGHT) {
+		a.y = LEVEL_HEIGHT - (a.hitbox.height / 2);
 		a.velY = 0;
 		a.velX *= .9;
 		a.airborne = false;
