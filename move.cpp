@@ -11,7 +11,17 @@ void Move::moveCamera(Object::Camera &a, Object::Player b) {
 }
 
 void Move::movePlayer(Object::Player &a, SDL_Event& e) {
-	
+	//key presses
+	SDL_PollEvent(&e);
+	event.keyboard_state_array = SDL_GetKeyboardState(NULL);
+
+	if (event.keyboard_state_array[SDL_SCANCODE_A]) a.forceX -= a.acceleration;
+	if (event.keyboard_state_array[SDL_SCANCODE_D]) a.forceX += a.acceleration;
+	if (!a.airborne) {
+		if (event.keyboard_state_array[SDL_SCANCODE_SPACE]) a.forceY -= 25;
+	}
+	a.velX *= .9;
+
 	a.velX += a.forceX;
 	a.velY += a.forceY;
 	if (a.velX > a.maxSpeed) a.velX = a.maxSpeed;
@@ -28,7 +38,6 @@ void Move::movePlayer(Object::Player &a, SDL_Event& e) {
 	if (a.hitbox.y + (a.hitbox.height / 2) > LEVEL_HEIGHT) {
 		a.y = LEVEL_HEIGHT - (a.hitbox.height / 2);
 		a.velY = 0;
-		a.velX *= .9;
 		a.airborne = false;
 	} else {
 		a.airborne = true;
@@ -43,15 +52,6 @@ void Move::movePlayer(Object::Player &a, SDL_Event& e) {
 
 	a.forceX = 0;
 	a.forceY = Gravity;
-
-	//key presses
-	SDL_PollEvent(&e);
-	event.keyboard_state_array = SDL_GetKeyboardState(NULL);
-
-	if (event.keyboard_state_array[SDL_SCANCODE_A]) a.forceX -= a.acceleration;
-	if (event.keyboard_state_array[SDL_SCANCODE_D]) a.forceX += a.acceleration;
-	if (event.keyboard_state_array[SDL_SCANCODE_SPACE] && !a.airborne) a.forceY -= 25;
-
 }
 
 void Move::moveHook(Object::Player &a, Object::Point b) {

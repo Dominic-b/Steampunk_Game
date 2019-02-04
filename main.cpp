@@ -27,11 +27,17 @@ int main(int argc, char args[]) {
 		event.update(e);
 		move.movePlayer(player, e);
 		if (event.mouse1held) move.moveHook(player, hook);
+		tiles.checkCollision(tiles.tileGrid, player);
 
 		move.moveCamera(camera, player);
 		object.drawPoint(hook, camera, renderer);
 		object.drawPlayer(player, camera, renderer);
-
+		tiles.tileGrid[16][10] = topLeft;
+		tiles.tileGrid[17][10] = top;
+		tiles.tileGrid[18][9] = topLeft;
+		tiles.tileGrid[19][9] = top;
+		tiles.tileGrid[20][9] = top;
+		tiles.drawTiles(tiles.tileGrid ,camera, renderer);
 
 		SDL_RenderDrawLine(renderer, 0 - camera.x, 100 - camera.y, 3000 - camera.x, 400 - camera.y);
 

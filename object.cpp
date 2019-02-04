@@ -12,19 +12,13 @@ Object::Point::Point() {
 }
 
 void Object::drawPoint(Point a, Camera b, SDL_Renderer* renderer) {
-	SDL_Rect source;
-	source.x = 0;
-	source.y = 0;
-	source.w = 16;
-	source.h = 16;
-
 	SDL_Rect destination;
-	destination.x = a.x - source.w / 2 - b.x;
-	destination.y = a.y - source.h / 2 - b.y;
-	destination.w = source.w;
-	destination.h = source.h;
+	destination.x = a.x - 8 - b.x;
+	destination.y = a.y - 8 - b.y;
+	destination.w = 16;
+	destination.h = 16;
 
-	SDL_RenderCopy(renderer, draw.loadTexture("Images/Square.png", renderer), &source, &destination);
+	SDL_RenderCopy(renderer, draw.loadTexture("Images/Square.png", renderer), nullptr, &destination);
 }
 
 Object::Line::Line() {
@@ -54,17 +48,11 @@ Object::Player::Player() {
 }
 
 void Object::drawPlayer(Player a, Camera b, SDL_Renderer* renderer) {
-	SDL_Rect source;
-	source.x = 0;
-	source.y = 0;
-	source.w = a.hitbox.width;
-	source.h = a.hitbox.height;
-
 	SDL_Rect destination;
 	destination.x = a.x - a.hitbox.width / 2 - b.x;
 	destination.y = a.y - a.hitbox.height / 2 - b.y;
 	destination.w = a.hitbox.width;
 	destination.h = a.hitbox.height;
 
-	SDL_RenderCopy(renderer, draw.loadTexture("Images/Square.png", renderer), &source, &destination);
+	SDL_RenderCopy(renderer, draw.loadTexture("Images/Square.png", renderer), nullptr, &destination);
 }

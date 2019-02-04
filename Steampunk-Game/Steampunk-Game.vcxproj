@@ -128,6 +128,7 @@
     <ClCompile Include="..\move.cpp" />
     <ClCompile Include="..\object.cpp" />
     <ClCompile Include="..\stdafx.cpp" />
+    <ClCompile Include="..\tiles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\draw.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="..\move.h" />
     <ClInclude Include="..\object.h" />
     <ClInclude Include="..\stdafx.h" />
+    <ClInclude Include="..\tiles.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
