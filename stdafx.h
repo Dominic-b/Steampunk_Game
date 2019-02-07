@@ -1,15 +1,19 @@
 #pragma once
-#include <SDL_image.h>
 #include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 #undef main
 
 #include <stdio.h>
 #include <vector>
+#include <fstream>
 
 #include "object.h"
 static Object object;
 #include "event.h"
 static Event event;
+#include "menu.h"
+static Menu menu;
 #include "move.h"
 static Move move;
 #include "draw.h"

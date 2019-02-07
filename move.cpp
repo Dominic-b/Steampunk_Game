@@ -19,8 +19,8 @@ void Move::movePlayer(Object::Player &a, SDL_Event& e) {
 	if (event.keyboard_state_array[SDL_SCANCODE_D]) a.forceX += a.acceleration;
 	if (!a.airborne) {
 		if (event.keyboard_state_array[SDL_SCANCODE_SPACE]) a.forceY -= 25;
+		a.velX *= .9;
 	}
-	a.velX *= .9;
 
 	a.velX += a.forceX;
 	a.velY += a.forceY;

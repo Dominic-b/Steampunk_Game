@@ -11,5 +11,6 @@ class Event {
 
 		const Uint8 *keyboard_state_array;
 
-		bool quit = false;//game loop flag
+		bool quit = false;//program loop flag
+		bool inGame = false;//game loop flag
 };

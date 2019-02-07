@@ -1,12 +1,14 @@
 #include "stdafx.h"
 
 void Event::update(SDL_Event &e) {
+	SDL_GetMouseState(&mouseX, &mouseY);
 	mouse1 = false;
 	mouse2 = false;
 	while (SDL_PollEvent(&e) != 0) {
 		//quiting the program
 		switch (e.type) {
 		case SDL_QUIT:
+			inGame = false;
 			quit = true;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
